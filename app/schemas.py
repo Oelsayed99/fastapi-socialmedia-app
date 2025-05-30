@@ -8,16 +8,6 @@ class PostBase(BaseModel):
 
 class PostCreate(PostBase):
     pass
-
-class Post(PostBase):
-    id:int
-    created_at:datetime
-    class Config:
-        orm_mode = True
-
-class UserCreated(BaseModel):
-    email:EmailStr
-    password:str
 class Userout(BaseModel):
     id:int
     email:EmailStr
@@ -25,6 +15,18 @@ class Userout(BaseModel):
 
     class Config:
         orm_mode = True
+class Post(PostBase):
+    id:int
+    created_at:datetime
+    owner_id:int
+    owner :Userout
+    class Config:
+        orm_mode = True
+
+class UserCreated(BaseModel):
+    email:EmailStr
+    password:str
+
 
 
 class UserLogin(BaseModel):
